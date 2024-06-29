@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <img src="img/wraper.png" class="w-100" alt="game photo" />
+     </header>
+    <section class="games">
+        <nav class="navbar navbar-expand-lg nav-bg position-sticky top-0 z-3 col-md-6 col-lg-9">
+           <div class="container">
+              <h5 class="navbar-brand mb-0 text-uppercase text-light">
+                 <img src="img/logo-sm.png" alt="logo photo" style="max-width: 40px" /> Game Reviews
+              </h5>
+              <button
+                 class="navbar-toggler"
+                 type="button"
+                 data-bs-toggle="collapse"
+                 data-bs-target="#navbarSupportedContent"
+                 aria-controls="navbarSupportedContent"
+                 aria-expanded="false"
+                 aria-label="Toggle navigation"
+              >
+                 <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse small navbar-collapse" id="navbarSupportedContent">
+                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 menu small">
+                    <li class="nav-item">
+                       <a role="button" class="nav-link active text-uppercase" aria-current="page" data-category="mmorpg">mmorpg</a>
+                    </li>
+                    <li class="nav-item">
+                       <a role="button" class="nav-link text-uppercase" data-category="shooter">shooter</a>
+                    </li>
+                    <li class="nav-item">
+                       <a role="button" class="nav-link text-uppercase" data-category="sailing">sailing</a>
+                    </li>
+                    <li class="nav-item">
+                       <a role="button" class="nav-link text-uppercase" data-category="permadeath">permadeath</a>
+                    </li>
+                    <li class="nav-item">
+                       <a role="button" class="nav-link text-uppercase" data-category="superhero">superhero</a>
+                    </li>
+                    <li class="nav-item">
+                       <a role="button" class="nav-link text-uppercase" data-category="pixel">pixel</a>
+                    </li>
+                 </ul>
+              </div>
+           </div>
+        </nav>
+
+        <main class="container my-5 home">
+           <section class="position-relative">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4" id="gameData"></div>
+           </section>
+        </main>
+     </section>
+     <section class="details d-none">
+      <div class="container">
+         <header class="hstack justify-content-between">
+            <h1 class="text-center h3 py-4">Details Game</h1>
+            <button class="btn-close btn-close-white" id="btnClose"></button>
+         </header>
+         <div class="row g-4" id="detailsContent"></div>
+      </div>
+   </section>
+           <div class="loading d-flex justify-content-center ">
+            <span class="loader"></span>
+      </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="./js/index.js" type="module"></script>
+    <script>
+      // <![CDATA[  <-- For SVG support
+      if ('WebSocket' in window) {
+         (function () {
+            function refreshCSS() {
+               var sheets = [].slice.call(document.getElementsByTagName("link"));
+               var head = document.getElementsByTagName("head")[0];
+               for (var i = 0; i < sheets.length; ++i) {
+                  var elem = sheets[i];
+                  var parent = elem.parentElement || head;
+                  parent.removeChild(elem);
+                  var rel = elem.rel;
+                  if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                     var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                     elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                  }
+                  parent.appendChild(elem);
+               }
+            }
+            var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+            var address = protocol + window.location.host + window.location.pathname + '/ws';
+            var socket = new WebSocket(address);
+            socket.onmessage = function (msg) {
+               if (msg.data == 'reload') window.location.reload();
+               else if (msg.data == 'refreshcss') refreshCSS();
+            };
+            if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+               console.log('Live reload enabled.');
+               sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+            }
+         })();
+      }
+      else {
+         console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+      }
+      // ]]>
+   </script>
+</body>
+
+</html>

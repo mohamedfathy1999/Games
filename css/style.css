@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+}
+body {
+    background-color: #272b30;
+    color: #fff;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.card-footer{
+    color: #fff;
+    
+}
+
+.home .card {
+    filter: grayscale(0.7);
+    transition: transform 0.5s, filter 0.5s 0.1s;
+ }
+
+.home .card:hover {
+    transform: scale(1.05);
+    filter: grayscale(0);
+ }
+
+
+a,
+p,
+span {
+   color: inherit !important;
+}
+a {
+    text-decoration: none;
+    color: #fff;
+}
+ul li a.active,
+ul li a:hover {
+    color: #09c !important;
+    transition: color 0.5s;
+}
+header img{
+    max-height: 30vh;
+    object-fit: cover;
+}
+nav {
+    background-color: rgb(58, 73, 123) !important;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 0.7);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    
+}
+nav .navs {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center;
+    
+}
+nav .navs ul {
+    display: flex;
+    gap: 20px;
+}
+
+
+
+.loading {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background-color: #272b30e3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+.loader {
+    position: relative;
+    width: 164px;
+    height: 164px;
+  }
+  .loader::before , .loader::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    left: 50%;
+    top: 50%;
+    animation: rotate 1s ease-in infinite;
+}
+.loader::after {
+  width: 20px;
+  height: 20px;
+  background-color: #FF3D00;
+  animation: rotate 1s ease-in infinite, moveY 1s ease-in infinite ;
+}
+
+@keyframes moveY {
+  0% , 100% {top: 10%}
+  45% , 55% {top: 59%}
+  60% {top: 40%}
+}
+@keyframes rotate {
+  0% { transform: translate(-50%, -100%) rotate(0deg) scale(1 , 1)}
+  25%{ transform: translate(-50%, 0%) rotate(180deg) scale(1 , 1)}
+  45% , 55%{ transform: translate(-50%, 100%) rotate(180deg) scale(3 , 0.5)}
+  60%{ transform: translate(-50%, 100%) rotate(180deg) scale(1, 1)}
+  75%{ transform: translate(-50%, 0%) rotate(270deg) scale(1 , 1)}
+  100%{ transform: translate(-50%, -100%) rotate(360deg) scale(1 , 1)}
+}
+    
